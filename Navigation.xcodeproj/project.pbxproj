@@ -75,6 +75,7 @@
 		74EAF6A625D1C42900F41122 /* MainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74EAF6A525D1C42900F41122 /* MainCoordinator.swift */; };
 		74EAF6AA25D1C5D000F41122 /* ProfileCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74EAF6A925D1C5D000F41122 /* ProfileCoordinator.swift */; };
 		74EAF6AF25D1D50400F41122 /* FeedCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74EAF6AE25D1D50400F41122 /* FeedCoordinator.swift */; };
+		74EE208126D43FBD003A0E62 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74EE208026D43FBD003A0E62 /* MapViewController.swift */; };
 		74F189762601574A00D66AA6 /* PlayerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F189752601574A00D66AA6 /* PlayerManager.swift */; };
 		74F9B1BE26496D6200612EE9 /* RealmEncryption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F9B1BD26496D6200612EE9 /* RealmEncryption.swift */; };
 		74FCEB10260914990095AFD7 /* RecorderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74FCEB0F260914990095AFD7 /* RecorderViewController.swift */; };
@@ -150,6 +151,7 @@
 		74EAF6A525D1C42900F41122 /* MainCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinator.swift; sourceTree = "<group>"; };
 		74EAF6A925D1C5D000F41122 /* ProfileCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCoordinator.swift; sourceTree = "<group>"; };
 		74EAF6AE25D1D50400F41122 /* FeedCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedCoordinator.swift; sourceTree = "<group>"; };
+		74EE208026D43FBD003A0E62 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		74F189752601574A00D66AA6 /* PlayerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerManager.swift; sourceTree = "<group>"; };
 		74F9B1BD26496D6200612EE9 /* RealmEncryption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmEncryption.swift; sourceTree = "<group>"; };
 		74FCEB0F260914990095AFD7 /* RecorderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecorderViewController.swift; sourceTree = "<group>"; };
@@ -199,6 +201,7 @@
 				742C78592554614F00B352FF /* Profile */,
 				746B9E95263F38F900C43A74 /* Favorites */,
 				74ADA31B2633406C005960A0 /* Media */,
+				74EE207F26D43F9F003A0E62 /* Map */,
 				060782B1250CE27700A87020 /* AppDelegate.swift */,
 				74756D72256402D4001D5099 /* Helpers */,
 				060782BA250CE27A00A87020 /* Assets.xcassets */,
@@ -468,6 +471,14 @@
 			path = Coordinator;
 			sourceTree = "<group>";
 		};
+		74EE207F26D43F9F003A0E62 /* Map */ = {
+			isa = PBXGroup;
+			children = (
+				74EE208026D43FBD003A0E62 /* MapViewController.swift */,
+			);
+			path = Map;
+			sourceTree = "<group>";
+		};
 		74FCEB0E2609145D0095AFD7 /* Recorder */ = {
 			isa = PBXGroup;
 			children = (
@@ -607,6 +618,7 @@
 			files = (
 				74F9B1BE26496D6200612EE9 /* RealmEncryption.swift in Sources */,
 				742C83142614CE4600D28FB3 /* PersonModel.swift in Sources */,
+				74EE208126D43FBD003A0E62 /* MapViewController.swift in Sources */,
 				74EAF6AF25D1D50400F41122 /* FeedCoordinator.swift in Sources */,
 				74972E012566DBD200B29277 /* PhotosTableViewCell.swift in Sources */,
 				741ED10225FFFB8B00306193 /* PostDummy.swift in Sources */,
