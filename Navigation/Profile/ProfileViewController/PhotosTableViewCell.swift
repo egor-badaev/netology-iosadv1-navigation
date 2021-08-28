@@ -28,7 +28,11 @@ class PhotosTableViewCell: UITableViewCell {
         let titleLabel = UILabel()
         
         titleLabel.toAutoLayout()
-        titleLabel.textColor = .black
+        if #available(iOS 13.0, *) {
+            titleLabel.textColor = .label
+        } else {
+            titleLabel.textColor = .black
+        }
         titleLabel.font = .systemFont(ofSize: 24, weight: .bold)
         titleLabel.text = "Photos"
         
@@ -39,7 +43,12 @@ class PhotosTableViewCell: UITableViewCell {
         let imageView = UIImageView()
         
         imageView.toAutoLayout()
-        imageView.image = #imageLiteral(resourceName: "disclosure")
+        imageView.image = #imageLiteral(resourceName: "disclosure").withRenderingMode(.alwaysTemplate)
+        if #available(iOS 13.0, *) {
+            imageView.tintColor = .label
+        } else {
+            imageView.tintColor = .black
+        }
         
         return imageView
     }()

@@ -45,7 +45,11 @@ class PostTableViewCell: UITableViewCell {
         
         authorLabel.toAutoLayout()
         authorLabel.font = UIFont.systemFont(ofSize: 20, weight: .bold)
-        authorLabel.textColor = .black
+        if #available(iOS 13.0, *) {
+            authorLabel.textColor = .label
+        } else {
+            authorLabel.textColor = .black
+        }
         authorLabel.numberOfLines = 2
 
         return authorLabel
@@ -55,7 +59,11 @@ class PostTableViewCell: UITableViewCell {
 
         imageView.toAutoLayout()
         imageView.contentMode = .scaleAspectFit
-        imageView.backgroundColor = .black
+        if #available(iOS 13.0, *) {
+            imageView.backgroundColor = .label
+        } else {
+            imageView.backgroundColor = .black
+        }
 
         return imageView
     }()
@@ -64,7 +72,11 @@ class PostTableViewCell: UITableViewCell {
 
         descriptionLabel.toAutoLayout()
         descriptionLabel.font = .systemFont(ofSize: 14)
-        descriptionLabel.textColor = .systemGray
+        if #available(iOS 13.0, *) {
+            descriptionLabel.textColor = .secondaryLabel
+        } else {
+            descriptionLabel.textColor = .systemGray
+        }
         descriptionLabel.numberOfLines = 0
 
         return descriptionLabel
@@ -200,6 +212,10 @@ fileprivate extension UILabel {
     func setupSupplementaryLabels() {
         self.toAutoLayout()
         self.font = .systemFont(ofSize: 16)
-        self.textColor = .black
+        if #available(iOS 13.0, *) {
+            self.textColor = .label
+        } else {
+            self.textColor = .black
+        }
     }
 }

@@ -50,7 +50,11 @@ class ProfileHeaderView: UIView {
         titleLabel.toAutoLayout()
         titleLabel.text = "John Appleseed"
         titleLabel.font = UIFont.systemFont(ofSize: 18, weight: .bold)
-        titleLabel.textColor = .black
+        if #available(iOS 13.0, *) {
+            titleLabel.textColor = .label
+        } else {
+            titleLabel.textColor = .black
+        }
         titleLabel.sizeToFit()
 
         return titleLabel
@@ -73,7 +77,11 @@ class ProfileHeaderView: UIView {
         statusLabel.toAutoLayout()
         statusLabel.text = Config.defaultStatusText
         statusLabel.font = UIFont.systemFont(ofSize: 14, weight: .regular)
-        statusLabel.textColor = .gray
+        if #available(iOS 13.0, *) {
+            statusLabel.textColor = .secondaryLabel
+        } else {
+            statusLabel.textColor = .gray
+        }
         statusLabel.sizeToFit()
 
         return statusLabel
@@ -103,7 +111,11 @@ class ProfileHeaderView: UIView {
         let statusTextField = StatusTextField()
 
         statusTextField.toAutoLayout()
-        statusTextField.textColor = .black
+        if #available(iOS 13.0, *) {
+            statusTextField.textColor = .label
+        } else {
+            statusTextField.textColor = .black
+        }
         statusTextField.font = UIFont.systemFont(ofSize: 15.0)
         statusTextField.placeholder = "Set your status..."
         statusTextField.layer.masksToBounds = true
@@ -119,10 +131,15 @@ class ProfileHeaderView: UIView {
         let statusTextFieldBackgroundLayer = CALayer()
         
         statusTextFieldBackgroundLayer.masksToBounds = true
-        statusTextFieldBackgroundLayer.borderColor = UIColor.black.cgColor
         statusTextFieldBackgroundLayer.borderWidth = 1.0
         statusTextFieldBackgroundLayer.cornerRadius = 12.0
-        statusTextFieldBackgroundLayer.backgroundColor = UIColor.white.cgColor
+        if #available(iOS 13.0, *) {
+            statusTextFieldBackgroundLayer.borderColor = UIColor.label.cgColor
+            statusTextFieldBackgroundLayer.backgroundColor = UIColor.systemBackground.cgColor
+        } else {
+            statusTextFieldBackgroundLayer.borderColor = UIColor.black.cgColor
+            statusTextFieldBackgroundLayer.backgroundColor = UIColor.white.cgColor
+        }
 
         return statusTextFieldBackgroundLayer
     }()
@@ -158,7 +175,11 @@ class ProfileHeaderView: UIView {
 
     private func setupUI() {
 
-        backgroundColor = .lightGray
+        if #available(iOS 13.0, *) {
+            backgroundColor = .systemGray6
+        } else {
+            backgroundColor = .lightGray
+        }
 
         addSubview(avatarContainerView)
         avatarContainerView.addSubview(avatarImageView)
