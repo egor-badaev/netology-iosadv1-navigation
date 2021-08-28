@@ -67,7 +67,8 @@ final class MainCoordinator {
 
         tabBarViewControllers.append(mediaViewController)
 
-        let mapViewController = MapViewController()
+        let locationService = LocationService()
+        let mapViewController = MapViewController(locationService: locationService)
         let mapTabBarIcon = UIImage(named: "Map")
         let mapTabBarItem = UITabBarItem(title: "Map", image: mapTabBarIcon, selectedImage: nil)
         mapViewController.tabBarItem = mapTabBarItem
