@@ -280,6 +280,11 @@ class MapViewController: UIViewController, AlertPresenter {
         }
     }
 
+    private func clearPins() {
+        mapView.removeAnnotations(mapView.annotations)
+        manualPins.removeAll()
+    }
+
 }
 
 // MARK: - LocationServiceDelegate
@@ -351,6 +356,15 @@ extension MapViewController: MKMapViewDelegate {
         }
         alertController.addAction(deleteAction)
 
+        var deleteAllActionTitle = "Удалить все точки"
+        if let _ = routeDestination {
+            deleteAllActionTitle += " и очистить маршрут"
+        }
+        let deleteAllAction = UIAlertAction(title: deleteAllActionTitle, style: .destructive) { [weak self] _ in
+            self?.clearPins()
+            self?.clearRoute(resettingMap: true)
+        }
+        alertController.addAction(deleteAllAction)
 
         let cancelAction = UIAlertAction(title: "Отмена", style: .cancel) { _ in
             mapView.deselectAnnotation(pin, animated: true)
