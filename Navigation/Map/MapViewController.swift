@@ -29,6 +29,12 @@ class MapViewController: UIViewController, AlertPresenter {
     private let mapView: MKMapView = {
         let mapView = MKMapView()
         mapView.toAutoLayout()
+
+        mapView.mapType = .mutedStandard
+        mapView.showsScale = true
+        mapView.showsPointsOfInterest = true
+        mapView.showsBuildings = true
+
         return mapView
     }()
 
