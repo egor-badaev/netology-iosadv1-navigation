@@ -8,6 +8,11 @@
 
 import UIKit
 
+/**
+ A view to cover entire view in case LocationService is unavailable
+
+ Provides built-in description and ability to display button with customizable action
+ */
 class LockMapView: UIView {
 
     // MARK: - Properties

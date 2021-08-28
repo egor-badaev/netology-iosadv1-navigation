@@ -10,8 +10,26 @@ import Foundation
 import CoreLocation
 
 protocol LocationServiceDelegate: AnyObject {
+    /**
+     Called when `CLLocationManager` receives a location update
+
+     - parameters:
+        - location: User location
+     */
     func received(location: CLLocationCoordinate2D)
+
+    /**
+     Called when `CLLocationManager` doesn't have necessary permissions to update user location
+
+     - parameters:
+        - permanently: Indicates whether user can change granted permissions
+
+     If authorization status is `.restricted`, user cannot do anything to change authorization status.
+     Otherwise we can suggest a solution
+     */
     func determinedServiceUnavailable(permanently: Bool)
+
+    /// Called when `CLLocationManager` receives the required permissions to update user location
     func determinedServiceAvailable()
 }
 
@@ -36,6 +54,7 @@ class LocationService: NSObject {
 
     // MARK: - Public methods
 
+    /// Acquire necessary permissions and start tracking location
     func start() {
         authorize { [weak self] in
             self?.delegate?.determinedServiceAvailable()
@@ -43,12 +62,14 @@ class LocationService: NSObject {
         }
     }
 
+    /// Stop tracking location
     func stop() {
         locationManager.stopUpdatingLocation()
     }
 
     // MARK: - Private methods
 
+    /// Acquire necessary permissions
     private func authorize(completion: @escaping () -> Void) {
         let authorizationStatus: CLAuthorizationStatus
         if #available(iOS 14.0, *) {
@@ -62,6 +83,7 @@ class LocationService: NSObject {
 
     }
 
+    /// A helper method to choose the right action based on authorization status
     private func handleAuthorizationStatus(_ status: CLAuthorizationStatus) {
         switch status {
         case .authorizedAlways,
@@ -85,16 +107,7 @@ class LocationService: NSObject {
 extension LocationService: CLLocationManagerDelegate {
 
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-        switch status {
-        case .authorizedAlways,
-             .authorizedWhenInUse:
-            authorizationCompletion?()
-            return
-        case .denied:
-            delegate?.determinedServiceUnavailable(permanently: false)
-        default:
-            break
-        }
+        handleAuthorizationStatus(status)
     }
 
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
