@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreLocation
 
 final class MainCoordinator {
     var childCoordinators: [Coordinator] = []
@@ -67,7 +68,8 @@ final class MainCoordinator {
 
         tabBarViewControllers.append(mediaViewController)
 
-        let locationService = LocationService()
+        let locationManager = CLLocationManager()
+        let locationService = LocationService(locationManager: locationManager)
         let mapViewController = MapViewController(locationService: locationService)
         let mapTabBarIcon = UIImage(named: "Map")
         let mapTabBarItem = UITabBarItem(title: "Map", image: mapTabBarIcon, selectedImage: nil)

@@ -41,25 +41,30 @@ class LocationService: NSObject {
 
     // MARK: - Private properties
 
-    private var authorizationCompletion: (() -> Void)?
+    private var locationManager: CLLocationManager
 
-    private lazy var locationManager: CLLocationManager = {
-        let locationManager = CLLocationManager()
+    init(locationManager: CLLocationManager) {
+        self.locationManager = locationManager
+        self.locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        super.init()
 
-        locationManager.delegate = self
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest
-
-        return locationManager
-    }()
+        defer {
+            self.locationManager.delegate = self
+        }
+    }
 
     // MARK: - Public methods
 
     /// Acquire necessary permissions and start tracking location
     func start() {
-        authorize { [weak self] in
-            self?.delegate?.determinedServiceAvailable()
-            self?.locationManager.startUpdatingLocation()
+        let authorizationStatus: CLAuthorizationStatus
+        if #available(iOS 14.0, *) {
+            authorizationStatus = locationManager.authorizationStatus
+        } else {
+            authorizationStatus = CLLocationManager.authorizationStatus()
         }
+
+        handleAuthorizationStatus(authorizationStatus)
     }
 
     /// Stop tracking location
@@ -69,26 +74,13 @@ class LocationService: NSObject {
 
     // MARK: - Private methods
 
-    /// Acquire necessary permissions
-    private func authorize(completion: @escaping () -> Void) {
-        let authorizationStatus: CLAuthorizationStatus
-        if #available(iOS 14.0, *) {
-            authorizationStatus = locationManager.authorizationStatus
-        } else {
-            authorizationStatus = CLLocationManager.authorizationStatus()
-        }
-
-        authorizationCompletion = completion
-        handleAuthorizationStatus(authorizationStatus)
-
-    }
-
     /// A helper method to choose the right action based on authorization status
     private func handleAuthorizationStatus(_ status: CLAuthorizationStatus) {
         switch status {
         case .authorizedAlways,
              .authorizedWhenInUse:
-            authorizationCompletion?()
+            delegate?.determinedServiceAvailable()
+            locationManager.startUpdatingLocation()
         case .denied:
             delegate?.determinedServiceUnavailable(permanently: false)
         case .restricted:
