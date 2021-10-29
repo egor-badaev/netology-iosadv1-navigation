@@ -15,6 +15,8 @@
 		060782C8250CEE5D00A87020 /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 060782C7250CEE5D00A87020 /* PostViewController.swift */; };
 		060782CA250CEE7200A87020 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 060782C9250CEE7200A87020 /* Post.swift */; };
 		74053821262AFFFE00AF7CED /* RealmAuthenticationAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74053820262AFFFE00AF7CED /* RealmAuthenticationAdapter.swift */; };
+		740A93B626D9846F00066524 /* LocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 740A93B526D9846F00066524 /* LocationService.swift */; };
+		740A93B826DA214800066524 /* LockMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 740A93B726DA214800066524 /* LockMapView.swift */; };
 		741124E72601392C00837B3C /* LedZeppelin.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 741124DC2601392C00837B3C /* LedZeppelin.mp3 */; };
 		741124E82601392C00837B3C /* CreedenceClearwaterRevival.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 741124DD2601392C00837B3C /* CreedenceClearwaterRevival.mp3 */; };
 		741124E92601392C00837B3C /* ACDC.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 741124DE2601392C00837B3C /* ACDC.m4a */; };
@@ -75,6 +77,7 @@
 		74EAF6A625D1C42900F41122 /* MainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74EAF6A525D1C42900F41122 /* MainCoordinator.swift */; };
 		74EAF6AA25D1C5D000F41122 /* ProfileCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74EAF6A925D1C5D000F41122 /* ProfileCoordinator.swift */; };
 		74EAF6AF25D1D50400F41122 /* FeedCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74EAF6AE25D1D50400F41122 /* FeedCoordinator.swift */; };
+		74EE208126D43FBD003A0E62 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74EE208026D43FBD003A0E62 /* MapViewController.swift */; };
 		74F189762601574A00D66AA6 /* PlayerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F189752601574A00D66AA6 /* PlayerManager.swift */; };
 		74F9B1BE26496D6200612EE9 /* RealmEncryption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F9B1BD26496D6200612EE9 /* RealmEncryption.swift */; };
 		74FCEB10260914990095AFD7 /* RecorderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74FCEB0F260914990095AFD7 /* RecorderViewController.swift */; };
@@ -92,6 +95,8 @@
 		060782C7250CEE5D00A87020 /* PostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
 		060782C9250CEE7200A87020 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		74053820262AFFFE00AF7CED /* RealmAuthenticationAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmAuthenticationAdapter.swift; sourceTree = "<group>"; };
+		740A93B526D9846F00066524 /* LocationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationService.swift; sourceTree = "<group>"; };
+		740A93B726DA214800066524 /* LockMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LockMapView.swift; sourceTree = "<group>"; };
 		741124DC2601392C00837B3C /* LedZeppelin.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = LedZeppelin.mp3; sourceTree = "<group>"; };
 		741124DD2601392C00837B3C /* CreedenceClearwaterRevival.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = CreedenceClearwaterRevival.mp3; sourceTree = "<group>"; };
 		741124DE2601392C00837B3C /* ACDC.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = ACDC.m4a; sourceTree = "<group>"; };
@@ -150,6 +155,7 @@
 		74EAF6A525D1C42900F41122 /* MainCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinator.swift; sourceTree = "<group>"; };
 		74EAF6A925D1C5D000F41122 /* ProfileCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCoordinator.swift; sourceTree = "<group>"; };
 		74EAF6AE25D1D50400F41122 /* FeedCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedCoordinator.swift; sourceTree = "<group>"; };
+		74EE208026D43FBD003A0E62 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		74F189752601574A00D66AA6 /* PlayerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerManager.swift; sourceTree = "<group>"; };
 		74F9B1BD26496D6200612EE9 /* RealmEncryption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmEncryption.swift; sourceTree = "<group>"; };
 		74FCEB0F260914990095AFD7 /* RecorderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecorderViewController.swift; sourceTree = "<group>"; };
@@ -199,6 +205,7 @@
 				742C78592554614F00B352FF /* Profile */,
 				746B9E95263F38F900C43A74 /* Favorites */,
 				74ADA31B2633406C005960A0 /* Media */,
+				74EE207F26D43F9F003A0E62 /* Map */,
 				060782B1250CE27700A87020 /* AppDelegate.swift */,
 				74756D72256402D4001D5099 /* Helpers */,
 				060782BA250CE27A00A87020 /* Assets.xcassets */,
@@ -468,6 +475,16 @@
 			path = Coordinator;
 			sourceTree = "<group>";
 		};
+		74EE207F26D43F9F003A0E62 /* Map */ = {
+			isa = PBXGroup;
+			children = (
+				74EE208026D43FBD003A0E62 /* MapViewController.swift */,
+				740A93B726DA214800066524 /* LockMapView.swift */,
+				740A93B526D9846F00066524 /* LocationService.swift */,
+			);
+			path = Map;
+			sourceTree = "<group>";
+		};
 		74FCEB0E2609145D0095AFD7 /* Recorder */ = {
 			isa = PBXGroup;
 			children = (
@@ -607,6 +624,7 @@
 			files = (
 				74F9B1BE26496D6200612EE9 /* RealmEncryption.swift in Sources */,
 				742C83142614CE4600D28FB3 /* PersonModel.swift in Sources */,
+				74EE208126D43FBD003A0E62 /* MapViewController.swift in Sources */,
 				74EAF6AF25D1D50400F41122 /* FeedCoordinator.swift in Sources */,
 				74972E012566DBD200B29277 /* PhotosTableViewCell.swift in Sources */,
 				741ED10225FFFB8B00306193 /* PostDummy.swift in Sources */,
@@ -627,6 +645,7 @@
 				746B9E9B263F3A4900C43A74 /* BaseCoordinator.swift in Sources */,
 				741124F02601392C00837B3C /* PlaylistProvider.swift in Sources */,
 				741124EE2601392C00837B3C /* AVControlButton.swift in Sources */,
+				740A93B826DA214800066524 /* LockMapView.swift in Sources */,
 				74756D5F2563C319001D5099 /* LogInViewController.swift in Sources */,
 				7484DA522613A333002CCD1C /* ToDoModel.swift in Sources */,
 				74EAF6A625D1C42900F41122 /* MainCoordinator.swift in Sources */,
@@ -634,6 +653,7 @@
 				060782B2250CE27700A87020 /* AppDelegate.swift in Sources */,
 				747887DB2640839500B944BB /* FavoritesManager.swift in Sources */,
 				741124ED2601392C00837B3C /* PlayerViewController.swift in Sources */,
+				740A93B626D9846F00066524 /* LocationService.swift in Sources */,
 				74B2B4CD2601529900C0293A /* YoutubeVideoModel.swift in Sources */,
 				74A7A17025CDC7A1005D12DE /* FeedModel.swift in Sources */,
 				747D73A426441B4D00A9AA20 /* ImageCacheService.swift in Sources */,
