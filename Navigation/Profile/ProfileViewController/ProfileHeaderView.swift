@@ -14,7 +14,8 @@ class ProfileHeaderView: UIView {
 
     private enum Config {
         static let largeMargin: CGFloat = 27.0
-        static let radius: CGFloat = 4.0
+        static let cornerRadius: CGFloat = 12.0
+        static let shadowOffset: CGFloat = 4.0
         static let avatarSize: CGFloat = 110.0
         static let textFieldHeight: CGFloat = 40.0
         static let statusButtonHeight: CGFloat = 50.0
@@ -97,11 +98,11 @@ class ProfileHeaderView: UIView {
         statusButton.setTitle("Set status", for: .normal)
         statusButton.clipsToBounds = true
         statusButton.layer.masksToBounds = false
-        statusButton.layer.cornerRadius = Config.radius
-        statusButton.layer.shadowOffset = CGSize(width: Config.radius, height: Config.radius)
-        statusButton.layer.shadowRadius = Config.radius
+        statusButton.layer.cornerRadius = Config.cornerRadius
+        statusButton.layer.shadowOffset = CGSize(width: Config.shadowOffset, height: Config.shadowOffset)
+        statusButton.layer.shadowRadius = Config.shadowOffset * 2
         statusButton.layer.shadowColor = UIColor.black.cgColor
-        statusButton.layer.shadowOpacity = 0.7
+        statusButton.layer.shadowOpacity = 0.4
         statusButton.addTarget(self, action: #selector(statusButtonTapped(_:)), for: .touchUpInside)
 
         return statusButton
@@ -132,7 +133,7 @@ class ProfileHeaderView: UIView {
         
         statusTextFieldBackgroundLayer.masksToBounds = true
         statusTextFieldBackgroundLayer.borderWidth = 1.0
-        statusTextFieldBackgroundLayer.cornerRadius = 12.0
+        statusTextFieldBackgroundLayer.cornerRadius = Config.cornerRadius
         if #available(iOS 13.0, *) {
             statusTextFieldBackgroundLayer.borderColor = UIColor.label.cgColor
             statusTextFieldBackgroundLayer.backgroundColor = UIColor.systemBackground.cgColor
@@ -169,6 +170,9 @@ class ProfileHeaderView: UIView {
             width: statusTextField.bounds.width,
             height: statusTextField.bounds.height
         )
+
+        statusButton.layer.shadowPath = UIBezierPath(roundedRect: statusButton.bounds, cornerRadius: Config.cornerRadius).cgPath
+
     }
 
     // MARK: - Private methods
