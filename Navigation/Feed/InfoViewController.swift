@@ -138,6 +138,15 @@ class InfoViewController: UIViewController {
         return label
     }()
 
+    private lazy var navigationBar: UINavigationBar = {
+        let navigationBar = UINavigationBar()
+        navigationBar.delegate = self
+
+        navigationBar.toAutoLayout()
+
+        return navigationBar
+    }()
+
     // MARK: - Life cycle
     
     init(viewModel: InfoViewModel) {
@@ -166,13 +175,28 @@ class InfoViewController: UIViewController {
         view.addSubview(residentsTableView)
         view.addSubview(tableLoader)
         view.addSubview(noResidentsLabel)
+
+        if #available(iOS 13.0, *) {
+
+        } else {
+            configureNavBar()
+        }
         
         let safeArea = view.safeAreaLayoutGuide
+
+        var containerViewTopConstraint: NSLayoutConstraint
+
+        if #available(iOS 13.0, *) {
+            containerViewTopConstraint = containerView.topAnchor.constraint(equalTo: safeArea.topAnchor, constant: AppConstants.margin)
+        } else {
+            containerViewTopConstraint = containerView.topAnchor.constraint(equalTo: navigationBar.bottomAnchor, constant: AppConstants.margin)
+        }
+
         
         let constraints = [
             containerView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: AppConstants.margin),
             containerView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -AppConstants.margin),
-            containerView.topAnchor.constraint(equalTo: safeArea.topAnchor, constant: AppConstants.margin),
+            containerViewTopConstraint,
             
             loader.centerXAnchor.constraint(equalTo: containerView.centerXAnchor),
             loader.centerYAnchor.constraint(equalTo: containerView.centerYAnchor),
@@ -197,11 +221,33 @@ class InfoViewController: UIViewController {
         
     }
 
+    private func configureNavBar() {
+        view.addSubview(navigationBar)
+
+        let constraints = [
+            navigationBar.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            navigationBar.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            navigationBar.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor)
+        ]
+
+        NSLayoutConstraint.activate(constraints)
+
+        let closeItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(dismissScreen(_:)))
+        let navigationItem = UINavigationItem()
+        navigationItem.rightBarButtonItem = closeItem
+        navigationBar.items = [navigationItem]
+
+    }
+
 
     // MARK: - Actions
     
     @objc private func showAlertButtonTapped(_ sender: Any) {
         coordinator?.showDeletePostAlert()
+    }
+
+    @objc private func dismissScreen(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
     }
 }
 
@@ -302,5 +348,13 @@ extension InfoViewController: UITableViewDelegate {
               let textLabel = headerView.textLabel else { return }
         textLabel.textColor = .black
         textLabel.font = .systemFont(ofSize: 14, weight: .semibold)
+    }
+}
+
+// MARK: - UINavigationBarDelegate
+extension InfoViewController: UINavigationBarDelegate {
+    func position(for bar: UIBarPositioning) -> UIBarPosition {
+        print(type(of: self), #function)
+        return .topAttached
     }
 }
