@@ -10,6 +10,7 @@ import Foundation
 import AVFoundation
 
 protocol PlayerManagerDelegate: AnyObject {
+    func playerDidLoad()
     func setTrack(_ track: AudioTrack)
     func togglePlayPause()
 }
@@ -43,6 +44,7 @@ class PlayerManager: NSObject {
     func setup() {
         currentTrackIndex = 0
         loadTrack(number: currentTrackIndex)
+        delegate?.playerDidLoad()
     }
     
     func startPlayback(updatingPlayPause shouldToggleButtonState: Bool = true) {

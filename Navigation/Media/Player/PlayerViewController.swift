@@ -69,6 +69,21 @@ class PlayerViewController: UIViewController {
         }
         return artistLabel
     }()
+
+    private let activityIndicator: UIActivityIndicatorView = {
+        var ai: UIActivityIndicatorView
+
+        if #available(iOS 13.0, *) {
+            ai = UIActivityIndicatorView(style: .large)
+        } else {
+            ai = UIActivityIndicatorView(style: .gray)
+        }
+
+        ai.toAutoLayout()
+        ai.hidesWhenStopped = true
+
+        return ai
+    }()
     
     //MARK: - Life cycle
 
@@ -77,7 +92,9 @@ class PlayerViewController: UIViewController {
         // Do any additional setup after loading the view.
         
         setupUI()
-        playerManager.setup()
+        DispatchQueue.global().async { [weak self] in
+            self?.playerManager.setup()
+        }
     }
     
     //MARK: - Actions
@@ -110,6 +127,7 @@ class PlayerViewController: UIViewController {
         } else {
             view.backgroundColor = .white
         }
+        view.addSubview(activityIndicator)
         view.addSubview(avControlsView)
         view.addSubview(trackLabel)
         view.addSubview(artistLabel)
@@ -125,11 +143,17 @@ class PlayerViewController: UIViewController {
             trackLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16.0),
             artistLabel.topAnchor.constraint(equalTo: trackLabel.bottomAnchor, constant: 4.0),
             artistLabel.leadingAnchor.constraint(equalTo: trackLabel.leadingAnchor),
-            artistLabel.trailingAnchor.constraint(equalTo: trackLabel.trailingAnchor)
+            artistLabel.trailingAnchor.constraint(equalTo: trackLabel.trailingAnchor),
+            activityIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            activityIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor)
         ]
         
         NSLayoutConstraint.activate(constraints)
 
+        avControlsView.isHidden = true
+        artistLabel.isHidden = true
+        trackLabel.isHidden = true
+        activityIndicator.startAnimating()
     }
     
 }
@@ -137,13 +161,28 @@ class PlayerViewController: UIViewController {
 // MARK: - PlayerManagerDelegate
     
 extension PlayerViewController: PlayerManagerDelegate {
+
+    func playerDidLoad() {
+        DispatchQueue.main.async { [weak self] in
+            guard let self = self else { return }
+            self.activityIndicator.stopAnimating()
+            self.avControlsView.isHidden = false
+            self.artistLabel.isHidden = false
+            self.trackLabel.isHidden = false
+        }
+    }
+
     func setTrack(_ track: AudioTrack) {
-        trackLabel.text = track.title
-        artistLabel.text = track.artist
+        DispatchQueue.main.async { [weak self] in
+            self?.trackLabel.text = track.title
+            self?.artistLabel.text = track.artist
+        }
     }
     
     func togglePlayPause() {
-        playButton.isHidden.toggle()
-        pauseButton.isHidden.toggle()
+        DispatchQueue.main.async { [weak self] in
+            self?.playButton.isHidden.toggle()
+            self?.pauseButton.isHidden.toggle()
+        }
     }
 }
