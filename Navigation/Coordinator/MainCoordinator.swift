@@ -24,6 +24,7 @@ final class MainCoordinator {
         setupProfileCoordinator()
         setupFavoritesCoordinator()
         setupTabBarController()
+        configureNavigationBarAppearance()
         rootWindow?.rootViewController = self.tabBarController
         rootWindow?.makeKeyAndVisible()
     }
@@ -55,6 +56,9 @@ final class MainCoordinator {
     }
 
     private func setupTabBarController() {
+
+        configureTabBarAppearance()
+
         var tabBarViewControllers: [UIViewController] = []
         childCoordinators.forEach {
             $0.start()
@@ -80,4 +84,27 @@ final class MainCoordinator {
         tabBarController.viewControllers = tabBarViewControllers
     }
     
+    private func configureNavigationBarAppearance() {
+        if #available(iOS 13.0, *) {
+            let appearance = UINavigationBarAppearance()
+            appearance.configureWithOpaqueBackground()
+            UINavigationBar.appearance().standardAppearance = appearance
+            UINavigationBar.appearance().scrollEdgeAppearance = appearance
+        } else {
+            UINavigationBar.appearance().isTranslucent = false
+        }
+    }
+
+    private func configureTabBarAppearance() {
+        if #available(iOS 13.0, *) {
+            let appearance = UITabBarAppearance()
+            appearance.configureWithOpaqueBackground()
+            UITabBar.appearance().standardAppearance = appearance
+            if #available(iOS 15.0, *) {
+                UITabBar.appearance().scrollEdgeAppearance = appearance
+            }
+        } else {
+            UITabBar.appearance().isTranslucent = false
+        }
+    }
 }
