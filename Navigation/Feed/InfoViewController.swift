@@ -272,11 +272,6 @@ extension InfoViewController: UITableViewDataSource {
         
         return cell
     }
-    
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        guard section == 0 else { return .zero }
-        return 44.0
-    }
 }
 
 // MARK: - UITableViewDelegate
