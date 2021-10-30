@@ -113,6 +113,11 @@ class InfoViewController: UIViewController {
         tableView.dataSource = self
         tableView.delegate = self
 
+        tableView.allowsSelection = false
+        tableView.separatorStyle = .none
+
+        tableView.sectionHeaderHeight = 44.0
+
         return tableView
         
     }()
@@ -270,6 +275,14 @@ extension InfoViewController: UITableViewDataSource {
         cell.textLabel?.textColor = .black
         cell.backgroundColor = .init(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.5)
         
+        if indexPath.row == 0 {
+            cell.layer.cornerRadius = 12.0
+            cell.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
+        } else if indexPath.row == tableView.numberOfRows(inSection: indexPath.section) - 1 {
+            cell.layer.cornerRadius = 12.0
+            cell.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
+        }
+
         return cell
     }
 }
