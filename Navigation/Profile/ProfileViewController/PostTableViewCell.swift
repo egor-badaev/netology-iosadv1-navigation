@@ -60,9 +60,9 @@ class PostTableViewCell: UITableViewCell {
         imageView.toAutoLayout()
         imageView.contentMode = .scaleAspectFit
         if #available(iOS 13.0, *) {
-            imageView.backgroundColor = .label
+            imageView.backgroundColor = .systemGray6
         } else {
-            imageView.backgroundColor = .black
+            imageView.backgroundColor = .lightGray
         }
 
         return imageView
@@ -126,6 +126,7 @@ class PostTableViewCell: UITableViewCell {
 
     private func setupUI() {
         selectionStyle = .none
+        contentView.backgroundColor = defaultBackgroundColor
         
         contentView.addSubview(authorLabel)
         contentView.addSubview(postImageView)

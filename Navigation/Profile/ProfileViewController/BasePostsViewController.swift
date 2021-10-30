@@ -13,7 +13,14 @@ class BasePostsViewController: UIViewController {
     //MARK: - Subviews
 
     lazy var postsTableView: UITableView = {
-        let tableView = UITableView()
+        let tableView = UITableView(frame: .zero, style: .grouped)
+        if #available(iOS 13.0, *) {
+            tableView.backgroundColor = .systemBackground
+        } else {
+            tableView.backgroundColor = .white
+        }
+        tableView.sectionFooterHeight = .zero
+
 
         tableView.toAutoLayout()
 

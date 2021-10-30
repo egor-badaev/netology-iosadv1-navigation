@@ -121,6 +121,12 @@ class PhotosTableViewCell: UITableViewCell {
     // MARK: - Custom methods
     
     private func setupUI() {
+        if #available(iOS 13.0, *) {
+            contentView.backgroundColor = .systemBackground
+        } else {
+            contentView.backgroundColor = .white
+        }
+
         contentView.addSubview(titleLabel)
         contentView.addSubview(disclosureImageView)
         contentView.addSubview(photosView)
