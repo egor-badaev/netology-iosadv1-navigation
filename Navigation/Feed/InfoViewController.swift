@@ -354,7 +354,6 @@ extension InfoViewController: UITableViewDelegate {
 // MARK: - UINavigationBarDelegate
 extension InfoViewController: UINavigationBarDelegate {
     func position(for bar: UIBarPositioning) -> UIBarPosition {
-        print(type(of: self), #function)
         return .topAttached
     }
 }

@@ -27,8 +27,8 @@ final class FeedViewController: UIViewController {
         stackView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         stackView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
         
-        stackView.onButtonTap = { index in
-            self.coordinator?.showPost(number: index)
+        stackView.onButtonTap = { [weak self] index in
+            self?.coordinator?.showPost(number: index)
         }
     }
 }

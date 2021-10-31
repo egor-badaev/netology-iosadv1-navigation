@@ -27,14 +27,14 @@ class AsyncImageProcessor {
     
     func process(image: UIImage, filter: ColorFilter, forIdentifier identifier: Int, completion: @escaping ((Result<UIImage, Error>) -> Void)) {
         
-        ImageProcessor().processImageAsync(sourceImage: image, filter: filter) { processedImage in
+        ImageProcessor().processImageAsync(sourceImage: image, filter: filter) { [weak self] processedImage in
             guard let processedImage = processedImage else {
                 completion(.failure(ImageProcessorError.failedToProcessImage))
                 return
             }
             let image = UIImage(cgImage: processedImage)
             completion(.success(image))
-            self.processedImages[identifier] = image
+            self?.processedImages[identifier] = image
         }
     }
     

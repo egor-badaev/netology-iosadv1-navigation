@@ -50,9 +50,9 @@ extension Coordinator {
     }
 
     func showAlertAndClose(title: String? = nil, message: String? = nil) {
-        let action = UIAlertAction(title: "OK", style: .default, handler: { _ in
-            self.closeCurrentController()
-        })
+        let action = UIAlertAction(title: "OK", style: .default) { [weak self] _ in
+            self?.closeCurrentController()
+        }
         self.showAlert(title: title ?? "Ошибка", message: message, actions: [action])
     }
 }
