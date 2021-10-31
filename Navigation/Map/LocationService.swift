@@ -47,16 +47,13 @@ class LocationService: NSObject {
         self.locationManager = locationManager
         self.locationManager.desiredAccuracy = kCLLocationAccuracyBest
         super.init()
-
-        defer {
-            self.locationManager.delegate = self
-        }
     }
 
     // MARK: - Public methods
 
     /// Acquire necessary permissions and start tracking location
     func start() {
+        self.locationManager.delegate = self
         let authorizationStatus: CLAuthorizationStatus
         if #available(iOS 14.0, *) {
             authorizationStatus = locationManager.authorizationStatus
@@ -70,6 +67,7 @@ class LocationService: NSObject {
     /// Stop tracking location
     func stop() {
         locationManager.stopUpdatingLocation()
+        self.locationManager.delegate = nil
     }
 
     // MARK: - Private methods
